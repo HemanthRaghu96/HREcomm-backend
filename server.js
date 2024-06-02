@@ -7,10 +7,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 require('./connection')
 const server = http.createServer(app);
 const {Server} = require('socket.io');
-// const io = new Server(server, {
-//   cors: 'http://localhost:3001',
-//   methods: ['GET', 'POST', 'PATCH', "DELETE"]
-// })
+const io = new Server(server, {
+  cors: 'http://localhost:3001',
+  methods: ['GET', 'POST', 'PATCH', "DELETE"]
+})
 
 
 const User = require('./models/User');
@@ -49,4 +49,4 @@ server.listen(8080, ()=> {
   console.log('server running at port', 8080)
 })
 
-// app.set('socketio', io);
+app.set('socketio', io);
